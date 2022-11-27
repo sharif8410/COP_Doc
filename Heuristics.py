@@ -230,14 +230,14 @@ def H5(Q,Y,Pm,U,l_max,e):
 
         for j in K:
             temp_g_i_j= g_i_j.copy()
-            temp_g_i_j[j]=rng.integers(0,math.floor(r[j]/p_i)+1)
+            temp_g_i_j[j]=rng.integers(0,max(1,math.floor(r[j]/p_i)))
             temp_l_i= Length(temp_g_i_j,Y_b,U,e)
             #print('t-g',temp_g_i_j)
             if temp_l_i <= l_max:
                 g_i_j= temp_g_i_j
                 l_i= temp_l_i
             elif temp_l_i > l_max:
-                g_i_j[j]= rng.integers(0,math.floor((l_max-l_i)/(Y_b[j]/U))+1)
+                g_i_j[j]= rng.integers(0, max(1,math.floor((l_max-l_i)/(Y_b[j]/U))))
                 l_i= Length(g_i_j,Y_b,U,e)
             else:
                 g_i_j[j]=0
